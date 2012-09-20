@@ -17,9 +17,9 @@ You can see what kinds of project you can create by typing:
 
 At the time of writing this was:
 
-template   A meta-template for 'lein new' templates.
-app        An application project template.
-plugin     A leiningen plugin project template.
-default    A general project template for libraries.
-pallet     A Pallet project template. The template requires a project name, and an
+    template   A meta-template for 'lein new' templates.
+    app        An application project template.
+    plugin     A leiningen plugin project template.
+    default    A general project template for libraries.
+    pallet     A Pallet project template. The template requires a project name, and an
 
