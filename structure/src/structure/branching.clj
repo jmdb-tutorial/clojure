@@ -1,4 +1,5 @@
-(ns structure.branching)
+(ns structure.branching
+  (:use structure.execute))
 
 (defn simple-if-statement
   "The most basic branching type"
@@ -10,5 +11,5 @@
 (defn execute
   "Runs some interesting branching examples"
   []
-  (simple-if-statement true)
+  (exedoc simple-if-statement true)
   (simple-if-statement false))
