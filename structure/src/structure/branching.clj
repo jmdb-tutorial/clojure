@@ -12,5 +12,3 @@
   []
   (simple-if-statement true)
   (simple-if-statement false))
-
-(execute)
