@@ -10,30 +10,33 @@
 
 (defn foo
   "This is some function"
-  [someArg]
-  (format "Hello %s" someArg))
+  []
+  (println "Hello foo"))
 
-;; Expansion of the meta function
-`(meta (var ~foo))
-
-
-(:doc  (get-meta foo))
+;; This is what we want to do ...
+(:doc  (meta #'foo))
 
 
-(defmacro get-meta
-  [fun]
-  `(meta (var ~fun)))
+(defn meta-doc
+  "Gets documentation from the metadata"
+  [obj]
+  (:doc (meta obj)))
 
 (defmacro doc-string
-  "Returns only the documentation of an object"
-  [obj]
-  `(:doc (get-meta ~obj)))
-
-(defmacro doc-string
-  "Gets documentation but inlines the meta call"
-  [obj]
-  `(:doc (meta (var ~obj))))
+  [fn-obj]
+  `(meta-doc (var ~fn-obj)))
 
 (doc-string foo)
-(doc-string-1 foo)
 
+;; We can see what the macro looks like when its expanded by doing this:
+(macroexpand '(doc-string foo))
+;; Note we have to put the literal syntax in there (') so that it doesn't actually execute the function!
+
+
+(defmacro exedoc
+  [fn-obj]
+  `(do
+     (println (meta-doc (var ~fn-obj)))
+     (~fn-obj)))
+
+(exedoc foo)
