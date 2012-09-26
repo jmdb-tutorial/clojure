@@ -11,3 +11,11 @@
      (printf "\n[example] %s:\n\n" (meta-doc (var ~fn-obj)))
      (~fn-obj)))
 
+(defmacro exedoc-1 [& body]
+  `(let [x# ~@body]
+     (println (str "dbg: " (quote ~@body) "=" x#))
+     x#))
+
+
+
+

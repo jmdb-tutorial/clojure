@@ -16,11 +16,12 @@
   (+ a b))
 
 
-(fact "Can call a no-arg function"
-      (with-out-str (print-something)) => (contains "something"))
 
 (fact "Describes and then executes a function"
-      (with-out-str (exedoc print-something)) => #"(.*)example(.*)something(.*)")
+      (with-out-str (exedoc print-something))
+         => #"(.*)example(.*)something(.*)")
+
+
 
 
 

@@ -17,3 +17,9 @@
   (meta (aFun)))
 
 (i-take-afunction-var-as-a-parameter a-function)
+
+;; Variable args:
+
+(defn pass-me-something
+  [a & others]
+  (println others))
