@@ -16,4 +16,4 @@
   [aFun]
   (meta (aFun)))
 
-(i-take-afunction-as-a-parameter a-function)
+(i-take-afunction-var-as-a-parameter a-function)
