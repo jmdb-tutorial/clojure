@@ -3,13 +3,22 @@
         midje.sweet
         structure.execute))
 
+(defn print-something
+  "Prints something out"
+  []
+  (println "something"))
+
+
+
 (defn add-up
   "Adds two numbers"
   [a b]
   (+ a b))
 
 (fact "Can call a no-arg function"
-      (add-up 2 2) => 4)
+      (with-out-str (print-something)) => (contains "something"))
 
-(fact "this should fail"
-      (+ 1 2) => 3)
+
+
+
+
