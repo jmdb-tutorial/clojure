@@ -1,5 +1,6 @@
 (ns structure.execute-test
   (:use clojure.test
+        midje.sweet
         structure.execute))
 
 (defn add-up
@@ -7,6 +8,8 @@
   [a b]
   (+ a b))
 
-(deftest no-arg-function
-  (testing "Can call a no-arg function"
-    (is (= 4 (add-up 2 2)))))
+(fact "Can call a no-arg function"
+      (add-up 2 2) => 4)
+
+(fact "this should fail"
+      (+ 1 2) => 3)
