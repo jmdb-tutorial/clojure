@@ -11,5 +11,5 @@
 (defn execute
   "Runs some interesting branching examples"
   []
-  (exedoc simple-if-statement true)
+  (simple-if-statement true)
   (simple-if-statement false))

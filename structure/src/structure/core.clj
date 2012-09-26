@@ -1,6 +1,6 @@
 (ns structure.core
   (:use structure.execute
-        structure.branching :as branching)
+        [structure.branching :as branching])
   (:gen-class))
 
 (defn -main
