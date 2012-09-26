@@ -4,6 +4,6 @@
   (:gen-class))
 
 (defn -main
-  "Prints out some stuff"
+  "Executes various clojure tutorials"
   [& args]
   (exedoc branching/execute))
