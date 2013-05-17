@@ -29,7 +29,7 @@
 (doc-string foo)
 
 ;; We can see what the macro looks like when its expanded by doing this:
-(macroexpand '(doc-string foo))
+(macroexpand `(doc-string foo))
 ;; Note we have to put the literal syntax in there (') so that it doesn't actually execute the function!
 
 
@@ -40,3 +40,15 @@
      (~fn-obj)))
 
 (exedoc foo)
+
+
+;; Using macros to execute named symbols...
+
+(defn functA [x & args] 
+  (format "First: %s, rest: %s" (str x) (apply str args)))
+
+(defmacro execute-keyword-fn [keyword & args]
+  `(~(symbol (name keyword)) ~@args)) 
+
+(defmacro argy [first & args]
+  `(str "First: " ~first ", rest: " (apply str [~@args])))
