@@ -24,8 +24,17 @@
   [a & others]
   (println others))
 
+;; Use of apply
+(defn myfn [a b c]
+  (format "%s:%s:%s" a b c))
+
+(myfn 1 2 3)
+
+(apply myfn ["a" "b" "c"]) ;; => "a:b:c"
+
+
 ;; @TODO
 ;; - Higher order functions (Functions that return functions)
 ;; - Partials
 ;; - Anonymous functions
-;; - 
+;; - apply

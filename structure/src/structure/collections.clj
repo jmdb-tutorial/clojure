@@ -1,5 +1,6 @@
 (ns structure.collections
-  "Contains demonstrations of various ways to work with collections of things"
+  "Contains demonstrations of various ways to work with collections of things
+   Notice that (apply) is not in here - that is for functions and parameters, see functions.clj"
   (:use [clojure.math.numeric-tower])
   (:require [clojure [zip :as zip]]))
 
