@@ -5,13 +5,12 @@
   :license         {:name "Eclipse Public License"
                     :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies    [[org.clojure/clojure "1.4.0"]
-                    [com.stuartsierra/lazytest "1.2.3"]
-                    [midje "1.3.0"]]
+  :dependencies    [[org.clojure/clojure "1.8.0"]
+                    [midje "1.8.3"]]
 
   :profiles        {:dev
-                    {:plugins [[lein-midje "2.0.0-SNAPSHOT"]]}
-                     :dependencies [com.stuartsierra/lazytest "1.2.3"]
-                     :repositories {"stuart" "http://stuartsierra.com/maven2"}}
+                    {:plugins [[lein-midje "3.2.1"]]}
+                     :dependencies []
+                     :repositories {}}
 
   :main            structure.core)
