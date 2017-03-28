@@ -23,3 +23,9 @@
 (defn pass-me-something
   [a & others]
   (println others))
+
+;; @TODO
+;; - Higher order functions (Functions that return functions)
+;; - Partials
+;; - Anonymous functions
+;; - 
