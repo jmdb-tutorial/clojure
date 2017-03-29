@@ -7,12 +7,10 @@
 ;; Do some basic comms:
 
 ;; Put on the channel
-(>!! ch "hello")
-;; true
+(>!! ch "hello") => ;; true
 
 ;; Take off the channel
-(<!! ch)
-;; "hello"
+(<!! ch) ;; => "hello"
 
 ;; If you take off when theres nothing there, it blocks
 (<!! ch)
@@ -35,6 +33,7 @@
 
 ;; Also notice that go returns a channel itself. This is how it communicates back whatever is the result of the block:
 
+;; Notice that this might end up just printing over your prompt in the repl so it looks like the repl is hanging but its not, just press <RETURN>
 (def rc (go (do (println "hello") true)))
 
 (<!! rc) ;; =>true
@@ -61,17 +60,31 @@
 (take-and-print ch)
 
 
-(defn consume-channel [channel]
+(defn consume-channel [channel handler]
+  "Will block on a channel until a message is recieved or the channel is closed at which point it will return 'finished' The blocking take
+   (<!) function wil return nil when the chanel is closed."
   (go
     (loop []
         (let [message (<! channel)]
           (if (nil? message)
             "finished"
             (do
-              (println "Message Recieved: " message)
+              (handler message)
               (recur)))))))
 
-(def rc (consume-channel ch))
+(defn print-message [message]
+  (println "Message recieved: " message))
+
+(def ch (chan 1))
+
+(def rc (consume-channel ch print-message))
+
+(>!! ch {:a "foo"})
+(>!! ch {:a "foo"})
+
+(close! ch)
+
+(<!! rc)
 
 ;; TODO
 ;; - ALTS! and ALT!
