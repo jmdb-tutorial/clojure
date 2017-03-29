@@ -65,14 +65,16 @@
    (<!) function wil return nil when the channel is closed."
   (go
     (loop []
-        (if (handler (<! channel))
-          "finished"                        
-          (recur)))))
+      (if (not (handler (<! channel)))
+        "finished"                        
+        (recur)))))
 
 (defn handle-message [message]
   (if (nil? message)
     false
-    (println "Message recieved: " message)))
+    (do
+      (println "Message recieved: " message)
+      true)))
 
 (def ch (chan 1))
 
