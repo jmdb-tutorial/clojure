@@ -59,24 +59,27 @@
 ;; Then try our function
 (take-and-print ch)
 
-
-(defn consume-channel [channel handler]
-  "Will block on a channel until a message is recieved or the channel is closed at which point it will return 'finished' The blocking take
-   (<!) function wil return nil when the channel is closed."
-  (go
-    (while (handler (<! channel)))
-    "finished"))
-
-(defn handle-message [message]
+(defn process-message [message processor]
   (if (nil? message)
     false
     (do
-      (println "Message recieved: " message)
+      (processor message)
       true)))
+
+
+(defn consume-channel [channel processor]
+  "Will block on a channel until a message is recieved or the channel is closed at which point it will return 'finished' The blocking take
+   (<!) function wil return nil when the channel is closed."
+  (go
+    (while (process-message (<! channel) processor))
+    "finished"))
+
+(defn print-message [message]
+  (println "Message recieved: " message))
 
 (def ch (chan 1))
 
-(def rc (consume-channel ch handle-message))
+(def rc (consume-channel ch print-message))
 
 (>!! ch {:a "foo"})
 (>!! ch {:a "foo"})
