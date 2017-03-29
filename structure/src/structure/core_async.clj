@@ -64,10 +64,8 @@
   "Will block on a channel until a message is recieved or the channel is closed at which point it will return 'finished' The blocking take
    (<!) function wil return nil when the channel is closed."
   (go
-    (loop []
-      (if (not (handler (<! channel)))
-        "finished"                        
-        (recur)))))
+    (while (handler (<! channel)))
+    "finished"))
 
 (defn handle-message [message]
   (if (nil? message)
