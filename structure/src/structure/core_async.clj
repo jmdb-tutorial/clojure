@@ -62,22 +62,21 @@
 
 (defn consume-channel [channel handler]
   "Will block on a channel until a message is recieved or the channel is closed at which point it will return 'finished' The blocking take
-   (<!) function wil return nil when the chanel is closed."
+   (<!) function wil return nil when the channel is closed."
   (go
     (loop []
-        (let [message (<! channel)]
-          (if (nil? message)
-            "finished"
-            (do
-              (handler message)
-              (recur)))))))
+        (if (handler (<! channel))
+          "finished"                        
+          (recur)))))
 
-(defn print-message [message]
-  (println "Message recieved: " message))
+(defn handle-message [message]
+  (if (nil? message)
+    false
+    (println "Message recieved: " message)))
 
 (def ch (chan 1))
 
-(def rc (consume-channel ch print-message))
+(def rc (consume-channel ch handle-message))
 
 (>!! ch {:a "foo"})
 (>!! ch {:a "foo"})
