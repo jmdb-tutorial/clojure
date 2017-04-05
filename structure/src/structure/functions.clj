@@ -38,3 +38,10 @@
 ;; - Partials
 ;; - Anonymous functions
 ;; - apply
+
+;; Return values
+
+(defn return-with-guard [value]
+  (if (= value "foo")
+    "EEK!"
+    value))

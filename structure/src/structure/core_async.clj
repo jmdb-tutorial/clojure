@@ -83,6 +83,7 @@
 
 (>!! ch {:a "foo"})
 (>!! ch {:a "foo"})
+;; (>!! ch nil) ;; Not allowed to put nil on a channel which is good:)
 
 (close! ch)
 
