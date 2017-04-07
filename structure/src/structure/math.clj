@@ -61,7 +61,7 @@
 (def mean-of-all (mean all-values))
 
 ;; Or you could add the counts and sums and then calculate
-(def aggregated-mean (let [input [mean-a mean-b mean-c]
+(def aggregated-mean (let [input [mean-a mean-b mean-c]                          
                            counts (map :count input)
                            sums (map :sum input)
                            N (reduce + counts)

@@ -53,3 +53,45 @@
 ;; "Either there were 0 args, or a=1"
 ;; user> (f6 :foo 2 3 4)
 ;; "a= :foo args= (2 3 4) all= (:foo 2 3 4)"
+
+(let [[a & rest :as all] [1 2 3 4 5 6]]
+     (str "a= " a ", rest= " rest ", all= " all))
+
+(let [[a b c] [1 2 3 4 5]]
+  (str "a= " a ",b= " b ",c=" c))
+
+;; Destructuring Maps
+
+;; Simple
+(def simple-map {:a "foo"
+                 :b "bar"
+                 :c "baz"})
+
+(let [{a :a b :b} simple-map]
+  (str "a= " a ",b= " b))
+
+;; Nested
+(def nested-map {:a "foo"
+                 :b "bar"
+                 :c { :d "boom!"
+                      :e "bang!"}})
+
+
+(let [{ a :a { d :d e :e } :c} nested-map]
+  (str "a= " a ",d= " d ",e= " e))
+
+;; Defaults
+
+(let [{a :a, no-such-key :no-such-key, b :b, :or {no-such-key "default value"}} simple-map]
+  (str ))
+
+;; Destructure over a list of maps:
+
+(def list-of-maps [{:a "1" :b "a"}
+                   {:a "2" :b "b"}
+                   {:a "3" :b "c"}
+                   {:a "4" :b "d"}
+                   {:a "5" :b "e"}
+                   {:a "6" :b "f"}])
+
+(map [{a :a b :b}] )
