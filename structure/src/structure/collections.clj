@@ -98,3 +98,40 @@
   (when (not (zip/end? z))
     (println (zip/node z))
     (recur (zip/next z))))
+
+;; Partition
+;; partition a list of 20 items into 5 (20/4) lists of 4 items
+(partition 4 (range 20)) ;;=> ((0 1 2 3) (4 5 6 7) (8 9 10 11) (12 13 14 15) (16 17 18 19))
+
+;; partition a list of 22 items into 5 (20/4) lists of 4 items 
+;; the last two items do not make a complete partition and are dropped.
+(partition 4 (range 22)) ;;=> ((0 1 2 3) (4 5 6 7) (8 9 10 11) (12 13 14 15) (16 17 18 19))
+
+;; Can add a step parameter to determine where it starts:
+(partition 4 6 (range 20))
+
+(partition 1 [1 2])
+
+;; Or you could just split:
+(split-at 1 [1 2])
+
+;; Mapcat
+(mapcat (fn [x] (split-at 1 x)) [[1 2] [1 2] [1 2]])
+
+(def vec-of-vec [[:a1 :b1] [:a2 :b2] [:a3 :b3]])
+
+((juxt (fn [x] (get x 0) (fn [x] (get x 1)))) vec-of-vec)
+
+((juxt :a :b) {:a 1 :b 2 :c 3 :d 4})
+
+((juxt (partial filter even?) (partial filter odd?)) (range 0 9))
+
+(reduce (fn [result, val]
+          (let [[a b] val
+                [res-a res-b] result]
+            [(conj res-a a)
+             (conj res-b b)])) [[] []]  vec-of-vec)
+
+
+
+

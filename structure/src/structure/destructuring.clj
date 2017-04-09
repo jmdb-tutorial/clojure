@@ -85,7 +85,9 @@
 (let [{a :a, no-such-key :no-such-key, b :b, :or {no-such-key "default value"}} simple-map]
   (str ))
 
-;; Destructure over a list of maps:
+;; "Destructure" over a list of maps:
+
+;; Which of these is most efficient?
 
 (def list-of-maps [{:a "1" :b "a"}
                    {:a "2" :b "b"}
@@ -94,4 +96,32 @@
                    {:a "5" :b "e"}
                    {:a "6" :b "f"}])
 
-(map [{a :a b :b}] )
+[(map :a list-of-maps)
+ (map :b list-of-maps)] ;; => [("1" "2" "3" "4" "5" "6") ("a" "b" "c" "d" "e" "f")]
+
+(apply map vector
+       (map (juxt :a :b) list-of-maps))
+
+(reduce (fn [result, val]
+          (let [{a :a b :b} val
+                [res-a res-b] result]
+            [(conj res-a a)
+             (conj res-b b)])) [[] []]  list-of-maps)
+
+
+
+
+
+
+(map (juxt :a :b) list-of-maps)
+
+(map vector [1 2 3] [1 2 3] [1 2 3])
+
+(map + [1 2 3] [1 2 3] [1 2 3])
+
+(map str [1 2 3] [2 3 4] [3 4 5])
+
+(map vector [1 2 3])
+(map vector [1 2 3] [1 2 3])
+(map vector [1 2 3] [1 2 3] [1 2 3])
+
