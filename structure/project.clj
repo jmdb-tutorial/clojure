@@ -5,11 +5,11 @@
   :license         {:name "Eclipse Public License"
                     :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies    [[org.clojure/clojure "1.8.0"]
-                    [midje "1.8.3"]
-                    [org.clojure/math.numeric-tower "0.0.4"]
-                    [org.clojure/core.async "0.3.442"]
-                    [incanter "1.9.1" :exclusions [org.clojure/clojure]] ;; See https://github.com/technomancy/leiningen/issues/2240
+  :dependencies    [[org.clojure/clojure "1.11.1"]
+                    [midje "1.10.9"]
+                    [org.clojure/math.numeric-tower "0.0.5"]
+                    [org.clojure/core.async "1.6.681"]
+                    [incanter "1.9.3" :exclusions [org.clojure/clojure]] ;; See https://github.com/technomancy/leiningen/issues/2240
                     ]
 
   :profiles        {:dev
